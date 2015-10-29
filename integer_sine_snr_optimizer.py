@@ -12,15 +12,14 @@
 #import needed modules
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.offsetbox import AnchoredText
 
 
 
 #Variables that can be modified by the user are between the lines:
 #------------------------------------------------
 
-n = 20 			#sine with n values
-Alimit = 409 		#value that should not be reached
+n = 24 			#sine with n values
+Alimit = 2048 		#value that should not be reached
 Amin = 0.5		#minimum value
 
 rangeincrement = 0.25	#increment for the phase phi from zero (0) to half a value distance (1)
@@ -155,17 +154,23 @@ for phinum in range(len(iteration_phichange)):
   
   #plot temporary maximum SNR
   plt.plot(asinopt[plotstart:plotend],snr_db_maxarr[plotstart:plotend],'--',c=col)
-  
-  #plot rule of thumb as comparation
-  plt.plot(np.arange(Amin,Alimit),1.76+6.02*(1+np.log2(np.arange(Amin,Alimit))),'k')
+
+#plot rule of thumb as comparation
+plt.plot(np.arange(Amin,Alimit),1.76+6.02*(1+np.log2(np.arange(Amin,Alimit))),'k', label='Noise Model')
 
 plt.grid(b=True, which="both",color='0.3',linestyle='--')#u'major')
+
 
 #select linear or logarithmic x axis depending on the range of A
 if Alimit / Amin > 10:
   plt.xscale('log')
   
 plt.legend(loc='upper left',fontsize=12)
+
+#create and plot text
+textstring = ( 'sine signal, N = ' + str(n) )
+plt.annotate(textstring, xy=(0.95, 0.05), xycoords='axes fraction', bbox={'facecolor':'white', 'alpha':1, 'pad':12}, horizontalalignment='right', verticalalignment='bottom')
+
 
 
 #plot figure 2
@@ -255,8 +260,8 @@ for phinum in range(len(iteration_phichange)):
   #plot temporary maximum SNR
   plt.plot(amaxint[plotstart:plotend],snr_db_maxarr[plotstart:plotend],'--',c=col)
   
-  #plot rule of thumb as comparation
-  plt.plot(np.arange(Amin,Alimit),1.76+6.02*(1+np.log2(np.arange(Amin,Alimit))),'k')
+#plot rule of thumb as comparation
+plt.plot(np.arange(Amin,Alimit),1.76+6.02*(1+np.log2(np.arange(Amin,Alimit))),'k', label='Noise Model')
 
 plt.grid(b=True, which="both",color='0.3',linestyle='--')#u'major')
 
@@ -265,6 +270,10 @@ if Alimit / Amin > 10:
   plt.xscale('log')
   
 plt.legend(loc='upper left',fontsize=12)
+
+#create and plot text
+textstring = ( 'sine signal, N = ' + str(n) )
+plt.annotate(textstring, xy=(0.95, 0.05), xycoords='axes fraction', bbox={'facecolor':'white', 'alpha':1, 'pad':12}, horizontalalignment='right', verticalalignment='bottom')
 
 #show plots
 plt.show() 
