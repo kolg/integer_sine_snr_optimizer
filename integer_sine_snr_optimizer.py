@@ -6,7 +6,7 @@
 #date:		20151029
 #usage:		python integer_sine_snr_optimizer.py
 #license:	GNU GPL v3.0
-#website:	https://xyz
+#website:	https://mbeha.wordpress.com/2015/10/30/snr-optimized-rounding-of-known-signals/
 #==============================================================================
 
 #import needed modules
